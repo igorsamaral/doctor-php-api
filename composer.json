@@ -1,0 +1,19 @@
+{
+    "name": "igorsantana/doctor-php-api",
+    "description": "API em PHP aplicando conceitos de clean code e clean arch",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Igor Santana",
+            "email": "financeiro@squadx.dev"
+        }
+    ],
+    "require": {
+        "pecee/simple-router": "4.3.7.2"
+    }
+}
