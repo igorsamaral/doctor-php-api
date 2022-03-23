@@ -4,7 +4,7 @@ namespace App\Domain\UseCases\Doctors;
 
 use App\Data\Repositories\DoctorRepository;
 
-class GetDoctorsUseCase
+class FindByUseCase
 {
     private DoctorRepository $doctorRepository;
 
@@ -13,8 +13,8 @@ class GetDoctorsUseCase
         $this->doctorRepository = new DoctorRepository();
     }
 
-    public function handle(array $filters = []): array
+    public function handle(array $filters = [])
     {
-        return $this->doctorRepository->search($filters);
+        return $this->doctorRepository->findBy($filters);
     }
 }
