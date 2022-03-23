@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Domain\UseCases\Doctors\GetDoctorsUseCase;
+use App\Http\Controllers\BaseController;
 
-class DoctorController extends Controller
+class DoctorController extends BaseController
 {
+    private GetDoctorsUseCase $getDoctorsUseCase;
+
+    public function __construct()
+    {
+        $this->getDoctorsUseCase = new GetDoctorsUseCase();
+    }
+
     public function index()
     {
-        $doctors = [
-            "id"    => 1,
-            "name"  => "Dr. João",
-            "specialties" => [
-                "Cardiologista",
-                "Cirurgia geral",
-            ]
-        ];
-
-        return response()->json(compact("doctors"));
+        try {
+            $doctors = $this->getDoctorsUseCase->handle([]);
+            return response()->json($doctors);
+        } catch (\Throwable $th) {
+            var_dump($th);
+        }
     }
 }
