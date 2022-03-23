@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Domain\Entities;
+
+/**
+ * @Entity
+ */
+class Doctor
+{
+    /**
+     * @Id
+     * @GeneratedValue
+     * @column(type="integer")
+     */
+    public int $id;
+
+    /**
+     * @column(type="string")
+     */
+    public string $name;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+}
