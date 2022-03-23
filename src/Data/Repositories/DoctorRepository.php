@@ -4,7 +4,7 @@ namespace App\Data\Repositories;
 
 class DoctorRepository
 {
-    public function get(array $filters): array
+    public function search(array $filters): array
     {
         return [
             "id"    => 1,

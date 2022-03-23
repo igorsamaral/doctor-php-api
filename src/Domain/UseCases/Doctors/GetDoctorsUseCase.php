@@ -15,6 +15,6 @@ class GetDoctorsUseCase
 
     public function handle(array $filters = []): array
     {
-        return $this->doctorRepository->get($filters);
+        return $this->doctorRepository->search($filters);
     }
 }
