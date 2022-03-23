@@ -12,6 +12,9 @@
             "Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "doctrine": "vendor/bin/doctrine"
+    },
     "authors": [
         {
             "name": "Igor Santana",
