@@ -2,17 +2,39 @@
 
 namespace App\Data\Repositories;
 
-class DoctorRepository
+use App\Domain\Entities\Doctor;
+use App\Infra\EntityManagerFactory;
+use Doctrine\ORM\EntityRepository;
+
+class DoctorRepository extends EntityRepository
 {
-    public function search(array $filters): array
+    private $ormInstance;
+
+    public function __construct()
     {
-        return [
-            "id"    => 1,
-            "name"  => "Dr. João",
-            "specialties" => [
-                "Cardiologista",
-                "Cirurgia geral",
-            ]
-        ];
+        $this->ormInstance = (new EntityManagerFactory())->getEntityManager();
+
+        parent::__construct(
+            $this->ormInstance,
+            $this->ormInstance->getClassMetadata(Doctor::class)
+        );
+    }
+    
+    public function findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null)
+    {
+        return parent::findBy($criteria);
+    }
+
+    public function create(array $input)
+    {
+        $doctor = new Doctor();
+
+        $doctor->setId($input["id"]);
+        $doctor->setName($input["name"]);
+
+        $this->ormInstance->persist($doctor);
+        $this->ormInstance->flush();
+
+        return [];
     }
 }
