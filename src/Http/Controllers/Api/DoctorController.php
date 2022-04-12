@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Domain\UseCases\Doctors\GetDoctorsUseCase;
+use App\Domain\UseCases\Doctors\CreateUseCase;
+use App\Domain\UseCases\Doctors\FindByUseCase;
 use App\Http\Controllers\BaseController;
+use Pecee\Http\Request;
 
 class DoctorController extends BaseController
 {
-    private GetDoctorsUseCase $getDoctorsUseCase;
+    private FindByUseCase $findByUseCase;
+    private CreateUseCase $createUseCase;
 
     public function __construct()
     {
-        $this->getDoctorsUseCase = new GetDoctorsUseCase();
+        $this->findByUseCase = new FindByUseCase();
+        $this->createUseCase = new CreateUseCase();
     }
 
     public function index()
     {
         try {
-            $doctors = $this->getDoctorsUseCase->handle([]);
+            $doctors = $this->findByUseCase->handle();
             return response()->json($doctors);
         } catch (\Throwable $th) {
             var_dump($th);
