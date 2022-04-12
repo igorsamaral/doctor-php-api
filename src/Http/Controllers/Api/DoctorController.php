@@ -27,4 +27,16 @@ class DoctorController extends BaseController
             var_dump($th);
         }
     }
+
+    public function store()
+    {
+        $input = ["id" => 1, "name" => "Dr. Matheus"];
+
+        try {
+            $doctorCreated = $this->createUseCase->handle($input);
+            return response()->json($doctorCreated);
+        } catch (\Throwable $th) {
+            var_dump($th);
+        }
+    }
 }
